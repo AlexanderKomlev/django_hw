@@ -25,9 +25,12 @@ def home_view(request):
 
 def time_view(request) -> HttpResponse:
     current_time = datetime.datetime.now().time()
-    msg = f'Текущее время: {current_time}'
+    msg = (f'Текущее время: {current_time}<br />'
+           f'<a href="{reverse("home")}">На главную</a>')
     return HttpResponse(msg)
 
 
 def workdir_view(request) -> HttpResponse:
-    return HttpResponse(f'Содержимое рабочей директории: {os.listdir()}')
+    msg = (f'Содержимое рабочей директории: {os.listdir()}<br />'
+           f'<a href="{reverse("home")}">На главную</a>')
+    return HttpResponse(msg)
