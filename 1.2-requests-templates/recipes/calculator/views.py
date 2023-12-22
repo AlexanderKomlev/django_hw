@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 
 DATA = {
     'omlet': {
@@ -19,12 +19,39 @@ DATA = {
     # можете добавить свои рецепты ;)
 }
 
-# Напишите ваш обработчик. Используйте DATA как источник данных
-# Результат - render(request, 'calculator/index.html', context)
-# В качестве контекста должен быть передан словарь с рецептом:
-# context = {
-#   'recipe': {
-#     'ингредиент1': количество1,
-#     'ингредиент2': количество2,
-#   }
-# }
+
+def home(request):
+    pages = {
+        'Омлет': reverse('omlet'),
+        'Паста': reverse('pasta'),
+        'Бутер': reverse('buter'),
+    }
+
+    context = {
+        'pages': pages
+    }
+    return render(request, 'calculator/home.html', context)
+
+
+def omlet(request):
+    servings = request.GET.get('servings', 1)
+    context = {
+        'recipe': {key: value * int(servings) for key, value in DATA['omlet'].items()}
+    }
+    return render(request, 'calculator/index.html', context)
+
+
+def pasta(request):
+    servings = request.GET.get('servings', 1)
+    context = {
+        'recipe': {key: value * int(servings) for key, value in DATA['pasta'].items()}
+    }
+    return render(request, 'calculator/index.html', context)
+
+
+def buter(request):
+    servings = request.GET.get('servings', 1)
+    context = {
+        'recipe': {key: value * int(servings) for key, value in DATA['buter'].items()}
+    }
+    return render(request, 'calculator/index.html', context)

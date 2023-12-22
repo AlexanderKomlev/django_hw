@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Домашняя страница</title>
+</head>
+<body>
+    {% for item, url in pages.items %}
+    <a href="{{ url }}" style="color: black; font-size: 20px">{{ item }}</a>
+    <br>
+    {% endfor %}
+</body>
+</html>
