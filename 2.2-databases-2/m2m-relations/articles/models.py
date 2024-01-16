@@ -1,3 +1,4 @@
+from collections.abc import Iterable
 from django.db import models
 
 
@@ -11,6 +12,26 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
+        ordering = ['-published_at']
 
     def __str__(self):
         return self.title
+    
+
+class Tags(models.Model):
+
+    name = models.CharField(max_length=50, verbose_name='Название')
+
+    class Meta:
+        verbose_name = 'Раздел'
+        verbose_name_plural = 'Разделы'
+
+    def __str__(self):
+        return self.name
+    
+
+class Scope(models.Model):
+
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='scopes', verbose_name='Статья')
+    tag = models.ForeignKey(Tags, on_delete=models.CASCADE, related_name='scopes', verbose_name='Раздел')
+    is_main = models.BooleanField(verbose_name='Основной')
