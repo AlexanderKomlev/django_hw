@@ -120,5 +120,5 @@ Content-Type: application/json
 ###
 
 # поиск складов, где есть определенный продукт
-GET {{baseUrl}}/stocks/?search=перец
+GET {{baseUrl}}/stocks/?search=Помид
 Content-Type: application/json
