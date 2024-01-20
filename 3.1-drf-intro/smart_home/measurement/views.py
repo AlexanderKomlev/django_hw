@@ -10,7 +10,7 @@ class SensorView(generics.ListCreateAPIView):
 
     def post(self, request):
         Sensor(name=request.data.get('name'), description=request.data.get('description')).save()
-        return Response(status=200)
+        return Response(status=201)
 
 
 class SensorDetailView(generics.RetrieveUpdateAPIView):
@@ -27,5 +27,5 @@ class SensorDetailView(generics.RetrieveUpdateAPIView):
 class MeasurementView(generics.CreateAPIView):
     def post(self, request):
         Measurement(sensor_id=request.data.get('sensor'), temperature=request.data.get('temperature')).save()
-        return Response(status=200)
+        return Response(status=201)
 
