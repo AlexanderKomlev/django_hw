@@ -7,8 +7,7 @@ from students.serializers import CourseSerializer
 
 
 class CoursesViewSet(ModelViewSet):
-
-    queryset = Course.objects.all()
+    queryset = Course.objects.all().order_by("id")
     serializer_class = CourseSerializer
     filter_backends = (DjangoFilterBackend, )
     filterset_class = CourseFilter
