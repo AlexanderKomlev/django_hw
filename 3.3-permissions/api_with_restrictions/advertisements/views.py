@@ -13,7 +13,6 @@ class AdvertisementViewSet(ModelViewSet):
 
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
-    filterset_fields = ['creator', 'status']
     filterset_class = AdvertisementFilter
 
 
